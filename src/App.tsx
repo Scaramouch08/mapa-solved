@@ -16,13 +16,13 @@ const MapComponent: React.FC = () => {
   const toggleCidadesMapa = () => {
     if (!map.current) return;
 
-    const visibility = mostrarCidades ? 'none' : 'visible';
+    const visibilidade = mostrarCidades ? 'none' : 'visible';
 
     if (map.current.getLayer('municipios-prenchimento')) {
-      map.current.setLayoutProperty('municipios-prenchimento', 'visibility', visibility);
+      map.current.setLayoutProperty('municipios-prenchimento', 'visibility', visibilidade);
     }
     if (map.current.getLayer('municipios-fronteiras')) {
-      map.current.setLayoutProperty('municipios-fronteiras', 'visibility', visibility);
+      map.current.setLayoutProperty('municipios-fronteiras', 'visibility', visibilidade);
     }
 
     setMostrarCidades(!mostrarCidades);
@@ -31,10 +31,10 @@ const MapComponent: React.FC = () => {
   const togglePontoMangueirao = ()=>{
     if(!map.current) return;
     
-    const visibility = mostrarPonto ? 'none' : 'visible';
+    const visibilidade = mostrarPonto ? 'none' : 'visible';
 
     if (map.current.getLayer ('mangueirao-ponto')){
-      map.current.setLayoutProperty('mangueirao-ponto', 'visibility', visibility);
+      map.current.setLayoutProperty('mangueirao-ponto', 'visibility', visibilidade);
     }
 
     setMostrarPontos(!mostrarPonto)
@@ -130,7 +130,7 @@ const MapComponent: React.FC = () => {
           color: 'black'
         }}
       >
-        {mostrarCidades ? 'Esconder' : 'Mostrar'}
+        {mostrarCidades ? 'Esconder Cidades' : 'Mostrar Cidades'}
       </button>
 
       <button 
