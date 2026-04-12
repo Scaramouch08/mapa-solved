@@ -8,7 +8,7 @@ const MapComponent: React.FC = () => {
 
   const lng = -48.444;
   const lat = -1.381111;
-  const zoom = 2; 
+  const zoom = 5; 
 
   useEffect(() => {
     if (map.current) return; 
@@ -25,17 +25,26 @@ const MapComponent: React.FC = () => {
         
          map.current!.addSource('cidades-brasil', {
           type: 'geojson',
-          data: '/brazil-cities.geojson'
+          data: 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&intrarregiao=municipio'
         });
 
         map.current!.addLayer({
-          id: 'pontos-cidade',
-          type: 'circle', 
+          id: 'preenchimento-cidade',
+          type: 'fill', 
           source: 'cidades-brasil',
           paint: {
-            'circle-radius': 4,
-            'circle-color': 'black',
-            'circle-opacity': 0.5 
+            'fill-color': 'black',
+            'fill-opacity': 0.2
+          }
+        });
+
+        map.current!.addLayer({
+          id: 'municipios-fronteiras',
+          type: 'line', 
+          source: 'cidades-brasil',
+          paint: {
+            'line-color': 'black', 
+            'line-width': 1          
           }
         });
   
@@ -63,7 +72,7 @@ map.current!.addSource('mangueirao-fonte', {
           type: 'circle',
           source: 'mangueirao-fonte',
           paint:{
-            'circle-radius': 10,
+            'circle-radius': 11,
             'circle-color': 'red',
             'circle-opacity': 1
           }
