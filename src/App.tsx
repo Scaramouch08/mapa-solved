@@ -6,9 +6,9 @@ const MapComponent: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
 
-  const lng = -48.5044;
-  const lat = -1.4558;
-  const zoom = 10;
+  const lng = -48.444;
+  const lat = -1.381111;
+  const zoom = 3; 
 
   useEffect(() => {
     if (map.current) return; 
@@ -18,37 +18,28 @@ const MapComponent: React.FC = () => {
         container: mapContainer.current,
         style: 'https://demotiles.maplibre.org/style.json', 
         center: [lng,lat],
-        zoom: 1
+        zoom: zoom
       });
 
-      map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
-
       map.current.on('load', () => {
-        // Safe to add sources and layers now
-        map.current!.addSource('my-custom-points', {
+        new maplibregl.Marker({ color: "#0040ff" })
+          .setLngLat([lng, lat])
+          .addTo(map.current!);
+
+       
+        map.current!.addSource('cities-source', {
           type: 'geojson',
-          data: {
-            type: "FeatureCollection",
-            features: [
-              {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [lng, lat] 
-                },
-                properties: {} // <-- The fix to satisfy TypeScript
-              }
-            ]
-          }
+          data: '/brazil-cities.json'
         });
 
         map.current!.addLayer({
-          id: 'points-layer',
+          id: 'cities-layer',
           type: 'circle', 
-          source: 'my-custom-points',
+          source: 'cities-source',
           paint: {
-            'circle-radius': 8,
-            'circle-color': 'black'
+            'circle-radius': 4,
+            'circle-color': 'black',
+            'circle-opacity': 0.5 
           }
         });
       });
