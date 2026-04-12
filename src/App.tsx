@@ -8,7 +8,7 @@ const MapComponent: React.FC = () => {
 
   const lng = -48.444;
   const lat = -1.381111;
-  const zoom = 3; 
+  const zoom = 2; 
 
   useEffect(() => {
     if (map.current) return; 
@@ -23,15 +23,15 @@ const MapComponent: React.FC = () => {
 
       map.current.on('load', () => {
         
-         map.current!.addSource('cities-source', {
+         map.current!.addSource('cidades-brasil', {
           type: 'geojson',
           data: '/brazil-cities.geojson'
         });
 
         map.current!.addLayer({
-          id: 'cities-layer',
+          id: 'pontos-cidade',
           type: 'circle', 
-          source: 'cities-source',
+          source: 'cidades-brasil',
           paint: {
             'circle-radius': 4,
             'circle-color': 'black',
@@ -55,11 +55,9 @@ map.current!.addSource('mangueirao-fonte', {
                 properties: {
                   name: "Mangueirão"
                 }
-              }
-            ]
+              }]
           }
         });
-
         map.current!.addLayer({
           id: 'mangueirao-ponto',
           type: 'circle',
@@ -67,12 +65,9 @@ map.current!.addSource('mangueirao-fonte', {
           paint:{
             'circle-radius': 10,
             'circle-color': 'red',
-            'circle-opacity': 0.8
+            'circle-opacity': 1
           }
-
-
         });
-        
       });
     }
     
