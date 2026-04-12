@@ -54,7 +54,7 @@ const MapComponent: React.FC = () => {
   }, [lng, lat, zoom]);
 
   return (
-    <div className="map-wrap" style={{ position: 'relative', width: '100%', height: '800px' }}>
+    <div className="map-wrap" style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <div ref={mapContainer} style={{ position: 'absolute', width: '100%', height: '100%' }} />
     </div>
   );
