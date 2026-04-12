@@ -22,14 +22,10 @@ const MapComponent: React.FC = () => {
       });
 
       map.current.on('load', () => {
-        new maplibregl.Marker({ color: "#0040ff" })
-          .setLngLat([lng, lat])
-          .addTo(map.current!);
-
-       
-        map.current!.addSource('cities-source', {
+        
+         map.current!.addSource('cities-source', {
           type: 'geojson',
-          data: '/brazil-cities.json'
+          data: '/brazil-cities.geojson'
         });
 
         map.current!.addLayer({
@@ -42,6 +38,41 @@ const MapComponent: React.FC = () => {
             'circle-opacity': 0.5 
           }
         });
+  
+
+       
+map.current!.addSource('mangueirao-fonte', {
+          type: 'geojson',
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [lng, lat] 
+                },
+                properties: {
+                  name: "Mangueirão"
+                }
+              }
+            ]
+          }
+        });
+
+        map.current!.addLayer({
+          id: 'mangueirao-ponto',
+          type: 'circle',
+          source: 'mangueirao-fonte',
+          paint:{
+            'circle-radius': 10,
+            'circle-color': 'red',
+            'circle-opacity': 0.8
+          }
+
+
+        });
+        
       });
     }
     
@@ -55,7 +86,7 @@ const MapComponent: React.FC = () => {
 
   return (
     <div className="map-wrap" style={{ position: 'relative', width: '100%', height: '100vh' }}>
-      <div ref={mapContainer} style={{ position: 'absolute', width: '100%', height: '100%' }} />
+      <div ref={mapContainer} style={{ position: 'absolute', width: '100%', height: '100vh' }} />
     </div>
   );
 };
