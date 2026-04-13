@@ -1,0 +1,159 @@
+/* MapComponent.module.css */
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.sidebar {
+  width: 260px;
+  background: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.header {
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.headerTitle {
+  margin: 0 0 15px 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 12px;
+  padding-right: 35px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.clearButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.clearButton:hover {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.listContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 15px;
+}
+
+.loadingText, .emptyText {
+  padding: 20px 0;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.listItem {
+  margin-bottom: 8px;
+  padding: 4px 0;
+}
+
+.checkboxLabel {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #444;
+  user-select: none;
+}
+
+.checkboxLabel:hover {
+  color: #000;
+}
+
+.checkbox {
+  margin-right: 10px;
+  accent-color: #2ecc71;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.mapWrap {
+  flex: 1;
+  position: relative;
+}
+
+.layerControl {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  min-width: 160px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.layerItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.layerItem:last-child {
+  margin-bottom: 0;
+}
+
+.layerLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.layerCheckbox {
+  cursor: pointer;
+  accent-color: #333;
+  width: 16px;
+  height: 16px;
+}
